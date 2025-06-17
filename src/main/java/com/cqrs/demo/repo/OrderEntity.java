@@ -1,28 +1,42 @@
 package com.cqrs.demo.repo;
 
 import com.cqrs.demo.dto.OrderStatus;
+import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
+import java.util.Date;
 import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
+@Table(name = "orders")
+@NoArgsConstructor
 public class OrderEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "order_id", nullable = false)
     private Long id;
+
+    @Column(name = "order_number", nullable = false, unique = true)
     private UUID orderNumber;
+
+    @Column(name = "first_name")
     private String firstName;
+
+    @Column(name = "last_name")
     private String lastName;
+
+    @Column(name = "country")
     private String country;
+
+    @Enumerated(value = EnumType.STRING)
+    @Column(name = "status")
     private OrderStatus status;
-    private String time;
+
+    @Column(name = "created_on")
+    private Date createdOn;
 }
