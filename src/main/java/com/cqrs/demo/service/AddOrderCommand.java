@@ -13,7 +13,7 @@ import java.util.UUID;
 public class AddOrderCommand {
 
     private final OrderRepository orderRepository;
-//    private final e streamBrige;
+//    private final StreamBrige streamBrige;
 
     public UUID execute(Input input) {
         final var uuid = UUID.randomUUID();

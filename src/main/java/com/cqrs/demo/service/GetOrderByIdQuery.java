@@ -2,7 +2,7 @@ package com.cqrs.demo.service;
 
 import com.cqrs.demo.dto.OrderDto;
 import com.cqrs.demo.dto.OrderStatus;
-import com.cqrs.demo.repo.OrderRepository;
+import com.cqrs.demo.repo.OrderReadOnlyRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
@@ -13,12 +13,12 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class GetOrderByIdQuery {
-    private final OrderRepository repository;
-    private final OrderConverter orderConverter;
+    private final OrderReadOnlyRepository readOnlyRepository;
+    private final OrderConverter converter;
 
     public Output execute(Long id) {
-        final var orderEntity = repository.findById(id).orElseThrow();
-        final var orderDto = orderConverter.fromEntity(orderEntity);
+        final var orderEntity = readOnlyRepository.findById(id).orElseThrow();
+        final var orderDto = converter.fromEntity(orderEntity);
         return Output.of(orderDto);
     }
 
