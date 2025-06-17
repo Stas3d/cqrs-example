@@ -4,7 +4,7 @@ import java.util.UUID;
 
 public record OrderDto(
         UUID orderNumber,
-        String name,
+        String firstName,
         String lastName,
         String country,
         OrderStatus status,

@@ -20,7 +20,7 @@ public class OrderEntity {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private UUID orderNumber;
-    private String name;
+    private String firstName;
     private String lastName;
     private String country;
     private OrderStatus status;
