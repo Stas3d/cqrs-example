@@ -13,13 +13,13 @@ import java.util.UUID;
 public class AddOrderCommand {
 
     private final OrderRepository orderRepository;
-//    private final StreamBrige streamBrige;
+//    private final e streamBrige;
 
     public UUID execute(Input input) {
         final var uuid = UUID.randomUUID();
         OrderEntity orderEntity = new OrderEntity();
         orderEntity.setOrderNumber(uuid);
-        orderEntity.setName(input.name);
+        orderEntity.setFirstName(input.firstName);
         orderEntity.setLastName(input.lastName);
         orderEntity.setCountry(input.country);
         orderEntity.setStatus(OrderStatus.CREATED);
@@ -30,10 +30,9 @@ public class AddOrderCommand {
     }
 
     public record Input(
-            String orderNumber,
-            String name,
+            String userId,
+            String firstName,
             String lastName,
-            String country,
-            String status) {
+            String country) {
     }
 }

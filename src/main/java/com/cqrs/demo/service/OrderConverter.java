@@ -10,7 +10,7 @@ public class OrderConverter {
     public OrderDto fromEntity(OrderEntity entity) {
         return new OrderDto(
                 entity.getOrderNumber(),
-                entity.getName(),
+                entity.getFirstName(),
                 entity.getLastName(),
                 entity.getCountry(),
                 entity.getStatus(),

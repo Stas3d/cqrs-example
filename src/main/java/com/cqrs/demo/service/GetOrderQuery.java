@@ -3,6 +3,7 @@ package com.cqrs.demo.service;
 import com.cqrs.demo.dto.OrderDto;
 import com.cqrs.demo.dto.OrderStatus;
 import com.cqrs.demo.repo.OrderRepository;
+
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Service;
@@ -16,15 +17,15 @@ public class GetOrderQuery {
     private final OrderConverter orderConverter;
 
     public Output execute(Long id) {
-        final var orderEntityOptional = repository.findById(id).orElseThrow();
-        final var dto = orderConverter.fromEntity(orderEntityOptional);
-        return Output.of(dto);
+        final var orderEntity = repository.findById(id).orElseThrow();
+        final var orderDto = orderConverter.fromEntity(orderEntity);
+        return Output.of(orderDto);
     }
 
     @Value
     public static class Output {
         UUID id;
-        String name;
+        String firstName;
         String lastName;
         String country;
         OrderStatus status;
@@ -33,7 +34,7 @@ public class GetOrderQuery {
         static Output of(OrderDto dto) {
             return new Output(
                     dto.orderNumber(),
-                    dto.name(),
+                    dto.firstName(),
                     dto.lastName(),
                     dto.country(),
                     dto.status(),
