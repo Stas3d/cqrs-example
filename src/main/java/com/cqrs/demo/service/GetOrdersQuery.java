@@ -2,7 +2,7 @@ package com.cqrs.demo.service;
 
 import com.cqrs.demo.dto.OrderDto;
 import com.cqrs.demo.dto.OrderStatus;
-import com.cqrs.demo.repo.OrderRepository;
+import com.cqrs.demo.repo.OrderReadOnlyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Service;
@@ -10,18 +10,17 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
 public class GetOrdersQuery {
-    private final OrderRepository repository;
-    private final OrderConverter orderConverter;
+    private final OrderReadOnlyRepository readOnlyRepository;
+    private final OrderConverter converter;
 
     public List<Output> execute() {
-        final var orderEntities = repository.findAll();
-        return StreamSupport.stream(orderEntities.spliterator(), false)
-                .map(orderConverter::fromEntity)
+        return readOnlyRepository.findAll()
+                .stream()
+                .map(converter::fromEntity)
                 .map(Output::of)
                 .collect(Collectors.toList());
     }

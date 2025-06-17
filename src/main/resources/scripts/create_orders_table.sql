@@ -1,5 +1,4 @@
-
-create TABLE IF NOT EXISTS orders (
+CREATE TABLE IF NOT EXISTS orders (
 
       order_id serial PRIMARY KEY,
       order_number VARCHAR(255) UNIQUE NOT NULL,
