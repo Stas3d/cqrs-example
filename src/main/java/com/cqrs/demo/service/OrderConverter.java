@@ -14,6 +14,6 @@ public class OrderConverter {
                 entity.getLastName(),
                 entity.getCountry(),
                 entity.getStatus(),
-                entity.getTime());
+                entity.getCreatedOn().getTime());
     }
 }

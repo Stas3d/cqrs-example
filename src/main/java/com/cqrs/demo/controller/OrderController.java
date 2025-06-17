@@ -1,8 +1,9 @@
 package com.cqrs.demo.controller;
 
 import com.cqrs.demo.service.AddOrderCommand;
-import com.cqrs.demo.service.GetOrderQuery;
+import com.cqrs.demo.service.GetOrderByIdQuery;
 
+import com.cqrs.demo.service.GetOrdersQuery;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +14,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("api/v1/orders")
 class OrderController {
-    private final GetOrderQuery getOrderQuery;
+    private final GetOrderByIdQuery getOrderByIdQuery;
     private final AddOrderCommand addOrderCommand;
+    private final GetOrdersQuery getOrdersQuery;
 
     @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> fetch(@PathVariable long id) {
-        final var output = getOrderQuery.execute(id);
+    public ResponseEntity<OrderResponse> fetchById(@PathVariable long id) {
+        final var output = getOrderByIdQuery.execute(id);
         return new ResponseEntity<>(OrderResponse.of(output), HttpStatus.OK);
+    }
+
+    @GetMapping("")
+    public ResponseEntity<List<OrderResponse>> fetchAll() {
+        final var orderDtoList = getOrdersQuery.execute();
+        final var orderResponseList = orderDtoList.stream()
+                .map(OrderResponse::of)
+                .collect(Collectors.toList());
+        return new ResponseEntity<>(orderResponseList, HttpStatus.OK);
     }
 
     @PostMapping

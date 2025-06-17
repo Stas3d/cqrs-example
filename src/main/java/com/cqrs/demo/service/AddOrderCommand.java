@@ -23,7 +23,6 @@ public class AddOrderCommand {
         orderEntity.setLastName(input.lastName);
         orderEntity.setCountry(input.country);
         orderEntity.setStatus(OrderStatus.CREATED);
-        orderEntity.setTime(null);
         orderRepository.save(orderEntity);
 //        streamBrige.send("order-topic", new OrderUpdateEvent(uuid);
         return uuid;

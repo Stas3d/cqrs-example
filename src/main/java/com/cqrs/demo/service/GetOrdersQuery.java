@@ -3,23 +3,27 @@ package com.cqrs.demo.service;
 import com.cqrs.demo.dto.OrderDto;
 import com.cqrs.demo.dto.OrderStatus;
 import com.cqrs.demo.repo.OrderRepository;
-
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 @Service
 @RequiredArgsConstructor
-public class GetOrderQuery {
+public class GetOrdersQuery {
     private final OrderRepository repository;
     private final OrderConverter orderConverter;
 
-    public Output execute(Long id) {
-        final var orderEntity = repository.findById(id).orElseThrow();
-        final var orderDto = orderConverter.fromEntity(orderEntity);
-        return Output.of(orderDto);
+    public List<Output> execute() {
+        final var orderEntities = repository.findAll();
+        return StreamSupport.stream(orderEntities.spliterator(), false)
+                .map(orderConverter::fromEntity)
+                .map(Output::of)
+                .collect(Collectors.toList());
     }
 
     @Value
@@ -29,16 +33,16 @@ public class GetOrderQuery {
         String lastName;
         String country;
         OrderStatus status;
-        String time;
+        long createdOn;
 
-        static Output of(OrderDto dto) {
-            return new Output(
+        static GetOrdersQuery.Output of(OrderDto dto) {
+            return new GetOrdersQuery.Output(
                     dto.orderNumber(),
                     dto.firstName(),
                     dto.lastName(),
                     dto.country(),
                     dto.status(),
-                    dto.time()
+                    dto.created()
             );
         }
     }

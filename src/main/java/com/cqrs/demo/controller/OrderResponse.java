@@ -1,7 +1,8 @@
 package com.cqrs.demo.controller;
 
 import com.cqrs.demo.dto.OrderStatus;
-import com.cqrs.demo.service.GetOrderQuery;
+import com.cqrs.demo.service.GetOrderByIdQuery;
+import com.cqrs.demo.service.GetOrdersQuery;
 
 import java.util.UUID;
 
@@ -11,16 +12,27 @@ record OrderResponse(
         String name,
         String lastName,
         String country,
-        String time
+        long createdOn
 ) {
-    static OrderResponse of(GetOrderQuery.Output output) {
+    static OrderResponse of(GetOrderByIdQuery.Output output) {
         return new OrderResponse(
                 output.getId(),
                 output.getStatus(),
                 output.getFirstName(),
                 output.getLastName(),
                 output.getCountry(),
-                output.getTime()
+                output.getCreatedOn()
+        );
+    }
+
+    static OrderResponse of(GetOrdersQuery.Output output) {
+        return new OrderResponse(
+                output.getId(),
+                output.getStatus(),
+                output.getFirstName(),
+                output.getLastName(),
+                output.getCountry(),
+                output.getCreatedOn()
         );
     }
 }
