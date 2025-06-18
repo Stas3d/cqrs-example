@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @RestController
@@ -25,9 +26,9 @@ class OrderController {
     private final GetOrdersQuery getOrdersQuery;
     private final GetOrderByIdQuery getOrderByIdQuery;
 
-    @GetMapping("/{id}")
-    public ResponseEntity<OrderResponse> fetchById(@PathVariable long id) {
-        final var output = getOrderByIdQuery.execute(id);
+    @GetMapping("/{uuid}")
+    public ResponseEntity<OrderResponse> fetchByUuid(@PathVariable UUID uuid) {
+        final var output = getOrderByIdQuery.execute(uuid);
         return new ResponseEntity<>(OrderResponse.of(output), HttpStatus.OK);
     }
 
@@ -42,7 +43,7 @@ class OrderController {
 
     @PostMapping
     public ResponseEntity<CreateOrderResponse> create(@RequestBody OrderRequest request) {
-        final var id = addOrderCommand.execute(request.toCommandInput());
-        return new ResponseEntity<>(new CreateOrderResponse(id), HttpStatus.CREATED);
+        final var uuid = addOrderCommand.execute(request.toCommandInput());
+        return new ResponseEntity<>(new CreateOrderResponse(uuid), HttpStatus.CREATED);
     }
 }
