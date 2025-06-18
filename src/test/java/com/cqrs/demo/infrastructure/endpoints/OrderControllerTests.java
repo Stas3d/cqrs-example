@@ -4,7 +4,6 @@ import com.cqrs.demo.configuration.AppTestConfiguration;
 import com.cqrs.demo.infrastructure.repositories.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
-import org.junit.jupiter.api.Disabled;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.junit.jupiter.api.Test;
@@ -12,8 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @SpringBootTest(properties = {
@@ -48,14 +48,18 @@ class OrderControllerTests {
 
     @Test
     @SneakyThrows
-    @Disabled
-    void ordersEndpointTestToDo() {// ToDO
-        final var response = this.mvc.perform(get("/api/v1/orders/"))
-                .andExpect(status().isOk())
+    void createOrderTest() {
+
+        final var orderRequest = objectMapper.writeValueAsString(new OrderRequest("first", "last", "UA"));
+        final var postResponse = this.mvc.perform(post("/api/v1/orders")
+                        .contentType(APPLICATION_JSON_UTF8)
+                        .content(orderRequest))
+                .andExpect(status().isCreated())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        final var result = objectMapper.readValue(response, OrderResponse.class);
-        assertEquals(result.country(), "UA");
+        final var uuid = objectMapper.readValue(postResponse, CreateOrderResponse.class).id();
+
+        assertNotNull(uuid);
     }
 }
