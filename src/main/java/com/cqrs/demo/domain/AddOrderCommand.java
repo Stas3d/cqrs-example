@@ -17,12 +17,12 @@ public class AddOrderCommand {
 
     public UUID execute(Input input) {
         final var uuid = UUID.randomUUID();
-        OrderEntity orderEntity = new OrderEntity();
-        orderEntity.setOrderNumber(uuid);
-        orderEntity.setFirstName(input.firstName);
-        orderEntity.setLastName(input.lastName);
-        orderEntity.setCountry(input.country);
-        orderEntity.setStatus(OrderStatus.CREATED);
+        OrderEntity orderEntity = new OrderEntity(uuid, input.firstName, input.lastName, input.country);
+//        orderEntity.setOrderNumber(uuid);
+//        orderEntity.setFirstName(input.firstName);
+//        orderEntity.setLastName(input.lastName);
+//        orderEntity.setCountry(input.country);
+//        orderEntity.setStatus(OrderStatus.CREATED);
         orderRepository.save(orderEntity);
 //        streamBrige.send("order-topic", new OrderUpdateEvent(uuid);
         return uuid;
