@@ -1,6 +1,6 @@
-package com.cqrs.demo.controller;
+package com.cqrs.demo.infrastructure.endpoints;
 
-import com.cqrs.demo.service.AddOrderCommand;
+import com.cqrs.demo.domain.AddOrderCommand;
 import lombok.NonNull;
 
 record OrderRequest(

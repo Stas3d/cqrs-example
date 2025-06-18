@@ -45,9 +45,9 @@ services:
     container_name: liquibase
     depends_on:
       - service-db
-    command: --url=jdbc:postgresql://service-db:5432/postgres?user=postgres&password=postgres --changeLogFile=/db/changelog/db.changelog-master.yaml update
+    command: --url=jdbc:postgresql://service-db:5432/postgres?user=postgres&password=postgres --changeLogFile=/db/changelog/changelog-master.yaml update
     volumes:
-      - ./db/changelog/db.changelog-master.yaml:/db/changelog/db.changelog-master.yaml
+      - ./db/changelog/changelog-master.yaml:/db/changelog/changelog-master.yaml
 
 volumes:
   db-data:

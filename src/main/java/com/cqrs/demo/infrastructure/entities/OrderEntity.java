@@ -1,4 +1,4 @@
-package com.cqrs.demo.repo;
+package com.cqrs.demo.infrastructure.entities;
 
 import com.cqrs.demo.dto.OrderStatus;
 import jakarta.persistence.*;
@@ -37,6 +37,6 @@ public class OrderEntity {
     @Column(name = "status")
     private OrderStatus status;
 
-    @Column(name = "created_on")
-    private Date createdOn;
+    @Column(name = "created_at")
+    private Date createdAt;
 }
