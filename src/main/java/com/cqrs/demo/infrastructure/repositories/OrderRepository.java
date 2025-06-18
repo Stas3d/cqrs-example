@@ -1,12 +1,10 @@
-package com.cqrs.demo.repo;
+package com.cqrs.demo.infrastructure.repositories;
 
+import com.cqrs.demo.infrastructure.entities.OrderEntity;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-
-import java.util.List;
 
 @Repository
 public interface OrderRepository extends CrudRepository<OrderEntity, Long> {
 
-    List<OrderEntity> findByLastName(String lastName);
 }

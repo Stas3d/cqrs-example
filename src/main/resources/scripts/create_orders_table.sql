@@ -6,5 +6,5 @@ CREATE TABLE IF NOT EXISTS orders (
       last_name VARCHAR(255),
       country VARCHAR(255),
       status VARCHAR(255) NOT NULL,
-      created_on TIMESTAMP default current_timestamp,
+      created_at TIMESTAMP default current_timestamp
 );

@@ -1,8 +1,8 @@
-package com.cqrs.demo.service;
+package com.cqrs.demo.domain;
 
 import com.cqrs.demo.dto.OrderDto;
 import com.cqrs.demo.dto.OrderStatus;
-import com.cqrs.demo.repo.OrderReadOnlyRepository;
+import com.cqrs.demo.infrastructure.repositories.OrderReadOnlyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Service;
@@ -14,11 +14,11 @@ import java.util.stream.Collectors;
 @Service
 @RequiredArgsConstructor
 public class GetOrdersQuery {
-    private final OrderReadOnlyRepository readOnlyRepository;
+    private final OrderReadOnlyRepository repository;
     private final OrderConverter converter;
 
     public List<Output> execute() {
-        return readOnlyRepository.findAll()
+        return repository.findAll()
                 .stream()
                 .map(converter::fromEntity)
                 .map(Output::of)
@@ -32,7 +32,7 @@ public class GetOrdersQuery {
         String lastName;
         String country;
         OrderStatus status;
-        long createdOn;
+        long createdAt;
 
         static GetOrdersQuery.Output of(OrderDto dto) {
             return new GetOrdersQuery.Output(

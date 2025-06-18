@@ -1,8 +1,8 @@
-package com.cqrs.demo.service;
+package com.cqrs.demo.domain;
 
 import com.cqrs.demo.dto.OrderStatus;
-import com.cqrs.demo.repo.OrderEntity;
-import com.cqrs.demo.repo.OrderRepository;
+import com.cqrs.demo.infrastructure.entities.OrderEntity;
+import com.cqrs.demo.infrastructure.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

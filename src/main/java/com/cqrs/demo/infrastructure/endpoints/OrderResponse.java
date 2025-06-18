@@ -1,8 +1,8 @@
-package com.cqrs.demo.controller;
+package com.cqrs.demo.infrastructure.endpoints;
 
 import com.cqrs.demo.dto.OrderStatus;
-import com.cqrs.demo.service.GetOrderByIdQuery;
-import com.cqrs.demo.service.GetOrdersQuery;
+import com.cqrs.demo.domain.GetOrderByIdQuery;
+import com.cqrs.demo.domain.GetOrdersQuery;
 
 import java.util.UUID;
 
@@ -21,7 +21,7 @@ record OrderResponse(
                 output.getFirstName(),
                 output.getLastName(),
                 output.getCountry(),
-                output.getCreatedOn()
+                output.getCreatedAt()
         );
     }
 
@@ -32,7 +32,7 @@ record OrderResponse(
                 output.getFirstName(),
                 output.getLastName(),
                 output.getCountry(),
-                output.getCreatedOn()
+                output.getCreatedAt()
         );
     }
 }

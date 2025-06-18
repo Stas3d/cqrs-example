@@ -1,4 +1,4 @@
-package com.cqrs.demo.repo;
+package com.cqrs.demo.infrastructure.entities;
 
 import com.cqrs.demo.dto.OrderStatus;
 import jakarta.persistence.*;
@@ -21,7 +21,7 @@ public class OrderViewEntity {
     @Column(name = "order_id", nullable = false)
     private Long id;
 
-    @Column(name = "order_number", nullable = false, unique = true)
+    @Column(name = "order_number")
     private UUID orderNumber;
 
     @Column(name = "first_name")
@@ -37,6 +37,6 @@ public class OrderViewEntity {
     @Column(name = "status")
     private OrderStatus status;
 
-    @Column(name = "created_on")
-    private Date createdOn;
+    @Column(name = "created_at")
+    private Date createdAt;
 }
