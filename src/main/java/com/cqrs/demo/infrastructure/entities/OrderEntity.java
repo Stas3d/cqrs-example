@@ -39,4 +39,12 @@ public class OrderEntity {
 
     @Column(name = "created_at")
     private Date createdAt;
+
+    public OrderEntity(UUID orderNumber, String firstName, String lastName, String country) {
+        this.orderNumber = orderNumber;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.country = country;
+        this.status = OrderStatus.CREATED;
+    }
 }
