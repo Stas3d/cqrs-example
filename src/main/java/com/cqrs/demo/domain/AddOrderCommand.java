@@ -1,6 +1,5 @@
 package com.cqrs.demo.domain;
 
-import com.cqrs.demo.dto.OrderStatus;
 import com.cqrs.demo.infrastructure.entities.OrderEntity;
 import com.cqrs.demo.infrastructure.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,23 +12,17 @@ import java.util.UUID;
 public class AddOrderCommand {
 
     private final OrderRepository orderRepository;
-//    private final StreamBrige streamBrige;
+//    private final StreamBrige streamBrige; // ToDO : materialized view approach can be updated to this
 
     public UUID execute(Input input) {
-        final var uuid = UUID.randomUUID();
-        OrderEntity orderEntity = new OrderEntity(uuid, input.firstName, input.lastName, input.country);
-//        orderEntity.setOrderNumber(uuid);
-//        orderEntity.setFirstName(input.firstName);
-//        orderEntity.setLastName(input.lastName);
-//        orderEntity.setCountry(input.country);
-//        orderEntity.setStatus(OrderStatus.CREATED);
+        final var result = UUID.randomUUID();
+        final var orderEntity = new OrderEntity(result, input.firstName, input.lastName, input.country);
         orderRepository.save(orderEntity);
 //        streamBrige.send("order-topic", new OrderUpdateEvent(uuid);
-        return uuid;
+        return result;
     }
 
     public record Input(
-            String userId,
             String firstName,
             String lastName,
             String country) {

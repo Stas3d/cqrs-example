@@ -13,11 +13,11 @@ import java.util.UUID;
 @Service
 @RequiredArgsConstructor
 public class GetOrderByIdQuery {
-    private final OrderReadOnlyRepository repository;
+    private final OrderReadOnlyRepository readOnlyRepository;
     private final OrderConverter converter;
 
-    public Output execute(Long id) {
-        final var orderEntity = repository.findById(id).orElseThrow();
+    public Output execute(UUID uuid) {
+        final var orderEntity = readOnlyRepository.findByOrderNumber(uuid).orElseThrow();
         final var orderDto = converter.fromEntity(orderEntity);
         return Output.of(orderDto);
     }
