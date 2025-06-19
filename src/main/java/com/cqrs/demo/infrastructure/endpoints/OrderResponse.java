@@ -12,7 +12,7 @@ record OrderResponse(
         String name,
         String lastName,
         String country,
-        long createdOn
+        Long createdOn
 ) {
     static OrderResponse of(GetOrderByIdQuery.Output output) {
         return new OrderResponse(

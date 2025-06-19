@@ -14,6 +14,10 @@ public class OrderConverter {
                 entity.getLastName(),
                 entity.getCountry(),
                 entity.getStatus(),
-                entity.getCreatedAt().getTime());
+                getCreatedAt(entity));
+    }
+
+    private static Long getCreatedAt(OrderViewEntity entity) {
+        return entity.getCreatedAt() != null ? entity.getCreatedAt().getTime() : null;
     }
 }

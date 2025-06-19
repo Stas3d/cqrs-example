@@ -29,7 +29,7 @@ public class GetOrderByIdQuery {
         String lastName;
         String country;
         OrderStatus status;
-        long createdAt;
+        Long createdAt;
 
         static Output of(OrderDto dto) {
             return new Output(

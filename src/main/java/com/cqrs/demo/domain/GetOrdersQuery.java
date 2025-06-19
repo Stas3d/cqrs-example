@@ -32,7 +32,7 @@ public class GetOrdersQuery {
         String lastName;
         String country;
         OrderStatus status;
-        long createdAt;
+        Long createdAt;
 
         static GetOrdersQuery.Output of(OrderDto dto) {
             return new GetOrdersQuery.Output(
