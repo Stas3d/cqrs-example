@@ -24,7 +24,6 @@ class GetOrderByIdQueryTest {
     void shouldGetOrder(@Mock OrderReadOnlyRepository repository) {
         final var viewEntity = new OrderViewEntity();
         viewEntity.setOrderNumber(uuid);
-        viewEntity.setId(2L);
         viewEntity.setCountry("UA");
         viewEntity.setFirstName("f");
         viewEntity.setLastName("l");
