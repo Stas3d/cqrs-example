@@ -30,7 +30,7 @@ class OrderControllerTests {
     private OrderRepository orderWriteRepository;
 
     @Autowired
-    private ObjectMapper objectMapper;
+    private ObjectMapper mapper;
 
     @Test
     @SneakyThrows
@@ -50,15 +50,15 @@ class OrderControllerTests {
     @SneakyThrows
     void createOrderTest() {
 
-        final var orderRequest = objectMapper.writeValueAsString(new OrderRequest("first", "last", "UA"));
-        final var postResponse = this.mvc.perform(post("/api/v1/orders")
+        final var value = mapper.writeValueAsString(new OrderRequest("first", "last", "UA"));
+        final var response = this.mvc.perform(post("/api/v1/orders")
                         .contentType(APPLICATION_JSON_UTF8)
-                        .content(orderRequest))
+                        .content(value))
                 .andExpect(status().isCreated())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        final var uuid = objectMapper.readValue(postResponse, CreateOrderResponse.class).id();
+        final var uuid = mapper.readValue(response, CreateOrderResponse.class).id();
 
         assertNotNull(uuid);
     }
