@@ -16,12 +16,8 @@ import java.util.UUID;
 @NoArgsConstructor
 public class OrderViewEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id", nullable = false)
-    private Long id;
-
     @Column(name = "order_number")
+    @Id
     private UUID orderNumber;
 
     @Column(name = "first_name")

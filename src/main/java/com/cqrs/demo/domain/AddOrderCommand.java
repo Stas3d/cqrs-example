@@ -15,11 +15,11 @@ public class AddOrderCommand {
 //    private final StreamBrige streamBrige; // ToDO : materialized view approach can be updated to this
 
     public UUID execute(Input input) {
-        final var result = UUID.randomUUID();
-        final var orderEntity = new OrderEntity(result, input.firstName, input.lastName, input.country);
+        final var uuid = UUID.randomUUID();
+        final var orderEntity = new OrderEntity(uuid, input.firstName, input.lastName, input.country);
         orderRepository.save(orderEntity);
 //        streamBrige.send("order-topic", new OrderUpdateEvent(uuid);
-        return result;
+        return uuid;
     }
 
     public record Input(

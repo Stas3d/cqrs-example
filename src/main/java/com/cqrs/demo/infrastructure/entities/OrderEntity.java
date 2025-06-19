@@ -24,17 +24,17 @@ public class OrderEntity {
     @Column(name = "order_number", nullable = false, unique = true)
     private UUID orderNumber;
 
-    @Column(name = "first_name")
+    @Column(name = "first_name", nullable = false)
     private String firstName;
 
-    @Column(name = "last_name")
+    @Column(name = "last_name", nullable = false)
     private String lastName;
 
     @Column(name = "country")
     private String country;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "status")
+    @Column(name = "status", nullable = false)
     private OrderStatus status;
 
     @Column(name = "created_at")
