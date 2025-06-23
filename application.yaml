@@ -32,3 +32,12 @@ spring:
     drop-first: false
     change-log: classpath:db/changelog/changelog-master.yaml
     default-schema: public
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
