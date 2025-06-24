@@ -1,6 +1,6 @@
-package com.cqrs.demo.infrastructure.repositories;
+package com.cqrs.demo.infrastructure.store.repositories;
 
-import com.cqrs.demo.infrastructure.entities.OrderViewEntity;
+import com.cqrs.demo.infrastructure.store.entities.OrderViewEntity;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.Repository;
 

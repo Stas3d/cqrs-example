@@ -1,7 +1,7 @@
-package com.cqrs.demo.infrastructure.repositories;
+package com.cqrs.demo.infrastructure.store.repositories;
 
 import com.cqrs.demo.configuration.AppTestConfiguration;
-import com.cqrs.demo.infrastructure.entities.OrderEntity;
+import com.cqrs.demo.infrastructure.store.entities.OrderEntity;
 import org.junit.jupiter.api.Test;
 
 import org.springframework.beans.factory.annotation.Autowired;

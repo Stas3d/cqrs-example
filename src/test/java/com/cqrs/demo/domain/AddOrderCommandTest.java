@@ -1,7 +1,7 @@
 package com.cqrs.demo.domain;
 
-import com.cqrs.demo.infrastructure.entities.OrderEntity;
-import com.cqrs.demo.infrastructure.repositories.OrderRepository;
+import com.cqrs.demo.infrastructure.store.entities.OrderEntity;
+import com.cqrs.demo.infrastructure.store.repositories.OrderRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
