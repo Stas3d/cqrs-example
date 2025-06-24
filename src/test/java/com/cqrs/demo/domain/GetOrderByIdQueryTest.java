@@ -1,13 +1,12 @@
 package com.cqrs.demo.domain;
 
-import com.cqrs.demo.infrastructure.entities.OrderViewEntity;
-import com.cqrs.demo.infrastructure.repositories.OrderReadOnlyRepository;
+import com.cqrs.demo.infrastructure.store.entities.OrderViewEntity;
+import com.cqrs.demo.infrastructure.store.repositories.OrderReadOnlyRepository;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -22,12 +21,7 @@ class GetOrderByIdQueryTest {
 
     @Test
     void shouldGetOrder(@Mock OrderReadOnlyRepository repository) {
-        final var viewEntity = new OrderViewEntity();
-        viewEntity.setOrderNumber(uuid);
-        viewEntity.setCountry("UA");
-        viewEntity.setFirstName("f");
-        viewEntity.setLastName("l");
-        viewEntity.setCreatedAt(new Date());
+        final var viewEntity = new OrderViewEntity(uuid, "UA", "f", "l");
         when(repository.findByOrderNumber(any())).thenReturn(Optional.of(viewEntity));
 
         final var query = new GetOrderByIdQuery(repository, new OrderConverter());

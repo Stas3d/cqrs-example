@@ -1,7 +1,7 @@
 package com.cqrs.demo.infrastructure.endpoints;
 
 import com.cqrs.demo.configuration.AppTestConfiguration;
-import com.cqrs.demo.infrastructure.repositories.OrderRepository;
+import com.cqrs.demo.infrastructure.store.repositories.OrderRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;

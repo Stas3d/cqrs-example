@@ -1,4 +1,4 @@
-package com.cqrs.demo.infrastructure.entities;
+package com.cqrs.demo.infrastructure.store.entities;
 
 import com.cqrs.demo.dto.OrderStatus;
 import jakarta.persistence.*;
@@ -12,35 +12,31 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "orders")
+@Table(name = "orders_view")
 @NoArgsConstructor
-public class OrderEntity {
+public class OrderViewEntity {
 
+    @Column(name = "order_number")
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "order_id", nullable = false)
-    private Long id;
-
-    @Column(name = "order_number", nullable = false, unique = true)
     private UUID orderNumber;
 
-    @Column(name = "first_name", nullable = false)
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "last_name", nullable = false)
+    @Column(name = "last_name")
     private String lastName;
 
     @Column(name = "country")
     private String country;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "status", nullable = false)
+    @Column(name = "status")
     private OrderStatus status;
 
     @Column(name = "created_at")
     private Date createdAt;
 
-    public OrderEntity(UUID orderNumber, String firstName, String lastName, String country) {
+    public OrderViewEntity(UUID orderNumber, String firstName, String lastName, String country) {
         this.orderNumber = orderNumber;
         this.firstName = firstName;
         this.lastName = lastName;

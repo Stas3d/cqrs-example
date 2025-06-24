@@ -8,5 +8,6 @@ public record OrderDto(
         String lastName,
         String country,
         OrderStatus status,
-        Long created) {
+        Long created
+) {
 }

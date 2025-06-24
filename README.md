@@ -1,2 +1,2 @@
 # cqrs-example
-The example of spring boot cqrs sample based on materialized view approach
+The example of cqrs sample based on spring-boot / materialized view approach
