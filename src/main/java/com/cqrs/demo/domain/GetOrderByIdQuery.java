@@ -7,10 +7,12 @@ import com.cqrs.demo.infrastructure.store.repositories.OrderReadOnlyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class GetOrderByIdQuery {
     private final OrderReadOnlyRepository readOnlyRepository;

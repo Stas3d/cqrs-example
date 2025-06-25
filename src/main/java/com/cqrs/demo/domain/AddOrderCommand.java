@@ -4,10 +4,12 @@ import com.cqrs.demo.infrastructure.store.entities.OrderEntity;
 import com.cqrs.demo.infrastructure.store.repositories.OrderRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class AddOrderCommand {
 
