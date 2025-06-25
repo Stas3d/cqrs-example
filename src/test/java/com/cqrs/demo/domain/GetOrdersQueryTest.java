@@ -1,6 +1,6 @@
 package com.cqrs.demo.domain;
 
-import com.cqrs.demo.dto.OrderStatus;
+import com.cqrs.demo.domain.order.OrderStatus;
 import com.cqrs.demo.infrastructure.store.entities.OrderViewEntity;
 import com.cqrs.demo.infrastructure.store.repositories.OrderReadOnlyRepository;
 import org.junit.jupiter.api.Test;

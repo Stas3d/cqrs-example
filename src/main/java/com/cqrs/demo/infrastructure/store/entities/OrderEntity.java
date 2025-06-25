@@ -1,6 +1,6 @@
 package com.cqrs.demo.infrastructure.store.entities;
 
-import com.cqrs.demo.dto.OrderStatus;
+import com.cqrs.demo.domain.order.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -17,7 +17,7 @@ import java.util.UUID;
 public class OrderEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "order_id", nullable = false)
     private Long id;
 

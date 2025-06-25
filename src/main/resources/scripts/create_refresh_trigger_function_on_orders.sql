@@ -1,12 +1,7 @@
-CREATE MATERIALIZED VIEW orders_view AS
-SELECT order_number, first_name, last_name, country, status, created_at
-FROM orders
-WITH DATA;
-
 CREATE FUNCTION refresh_orders()
     RETURNS TRIGGER LANGUAGE plpgsql
     AS $$
-        BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY orders_view;
+        BEGIN REFRESH MATERIALIZED VIEW CONCURRENTLY orders_mview;
         RETURN NULL;
     END $$;
 
