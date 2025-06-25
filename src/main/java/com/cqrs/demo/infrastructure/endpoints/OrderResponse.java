@@ -1,6 +1,6 @@
 package com.cqrs.demo.infrastructure.endpoints;
 
-import com.cqrs.demo.dto.OrderStatus;
+import com.cqrs.demo.domain.order.OrderStatus;
 import com.cqrs.demo.domain.GetOrderByIdQuery;
 import com.cqrs.demo.domain.GetOrdersQuery;
 

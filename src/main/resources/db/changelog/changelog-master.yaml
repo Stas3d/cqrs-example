@@ -4,4 +4,6 @@ databaseChangeLog:
   - include:
       file: scripts/fill_orders_table.sql
   - include:
-      file: scripts/create_orders_materialized_view.sql
+      file: scripts/create_orders_materialized_mview.sql
+  - include:
+      file: scripts/create_refresh_trigger_function_on_orders.sql

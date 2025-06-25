@@ -1,6 +1,6 @@
 package com.cqrs.demo.domain;
 
-import com.cqrs.demo.dto.OrderDto;
+import com.cqrs.demo.domain.order.OrderDto;
 import com.cqrs.demo.infrastructure.store.entities.OrderViewEntity;
 import org.springframework.stereotype.Service;
 

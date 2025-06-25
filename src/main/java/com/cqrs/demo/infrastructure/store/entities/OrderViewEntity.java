@@ -1,6 +1,6 @@
 package com.cqrs.demo.infrastructure.store.entities;
 
-import com.cqrs.demo.dto.OrderStatus;
+import com.cqrs.demo.domain.order.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "orders_view")
+@Table(name = "orders_mview")
 @NoArgsConstructor
 public class OrderViewEntity {
 

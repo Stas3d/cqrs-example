@@ -1,7 +1,7 @@
 package com.cqrs.demo.domain;
 
-import com.cqrs.demo.dto.OrderDto;
-import com.cqrs.demo.dto.OrderStatus;
+import com.cqrs.demo.domain.order.OrderDto;
+import com.cqrs.demo.domain.order.OrderStatus;
 import com.cqrs.demo.infrastructure.store.repositories.OrderReadOnlyRepository;
 
 import lombok.RequiredArgsConstructor;
