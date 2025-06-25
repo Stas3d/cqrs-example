@@ -6,12 +6,14 @@ import com.cqrs.demo.infrastructure.store.repositories.OrderReadOnlyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Service
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class GetOrdersQuery {
     private final OrderReadOnlyRepository repository;
